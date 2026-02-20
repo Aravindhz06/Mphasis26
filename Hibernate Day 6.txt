@@ -1,0 +1,204 @@
+Hibernate 
+
+1) project->maven project->java-quick->de.bripkens
+	groupId: mphasis
+	artifactId: HibExamples
+	package: com.java.hib
+
+2)pom.xml -> after 19th or 20th line after <dependencies> -> paste the dependency content
+
+	 <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.30</version>
+</dependency>
+     <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+
+3)right click on project->source folder->type "resources"-> right click on resources ->create a new file-> and type "hibernate.cfg.xml"
+
+4) After creating the file-> go to the source(down in the workspace) and copy paste the code below:
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	<hibernate-configuration>
+    	<session-factory>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+       	 <property name="hibernate.connection.password">root</property>
+       	 <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mphasis26</property>
+       	 <property name="hibernate.connection.username">root</property>
+         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+       </session-factory>
+	</hibernate-configuration>
+
+5)If the "hibernate.cfg.xml" file shows error -> go to window -> preferences -> XML (Wild Web Developer) -> tick the "Download external resources like referenced DTD,XSD
+and as well the change the password from "root" to "root@39"
+
+6) Right click on the package(com.java.hib) -> Enum -> type in package: com.java.hib -> Give the name as Gender 
+	package com.java.hib;
+
+public enum Gender {
+	MALE,FEMALE
+}	
+
+
+7) same right click on the package and create a new class and name it as "Employ"
+
+  and type the code and generate getters and setters method by clicking Alt+Shift+S -> generate it 
+
+8) go to the hibernate.cfg.xml and type -> <mapping class="com.java.hib.Employ"/> after the <property .....> line of code
+
+9) create a class in the package com.java.hib -> EmployShow.java
+
+		Query query=session.createQuery("from Employ");-> This is one line of code, in this line the "from Employ" is taking the data from Employ class not employ table 
+		that's why We write capital "E" for Employ.
+
+10) Now create toString() in Employ.java by right click on Employ.java -> generate toString()
+
+11) In EmployShow.java code just run (Alt+Shift+X) and click J it will run on console and you will get the expected out from the database.
+
+
+
+
+12) Now using hibernate it will only printing in console, so afterwards we are using the same hibernate to print it on webserver by connecting the jsp and beans
+
+
+
+ *****************************************************************************************************************************************************************
+
+			NOW WE ARE USING THE SAME HIBERNATE USING WEB
+
+1) Create one maven project -> quickstart-web 
+	groupId:mphasis
+	artifactId:HibWebEx
+	package.com.java.hib
+
+2) pom.xml after 41st line 
+
+3) right click on project->source folder->type "resources"-> right click on resources -> new -> Others -> type xml -> click XML File and name it as "hibernate.cfg.xml" and click finish and paste the code that I will be given below:
+	
+	<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root@39</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mphasis26</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    </session-factory>
+</hibernate-configuration>
+
+
+4) right click on the package com.java.hib and create a new class "SessionHelper" and change the package name to com.java.hib.util
+
+5) Create a new Enum "Gender" and change the package name to com.java.hib.model
+
+6) Create a new Interface "EmployDao" and change the package name to com.java.hib.dao  and create a new class "EmployDaoImpl" in the same package com.java.hib.dao
+
+7) We have to add JSTL dependency after 41st line in the pom.xml file
+
+8) Now create a "EmployShow.jsp" by right clicking the webapp and choose the JSP File.
+
+
+
+
+
+
+
+
+session->first level
+2nd level->cache
+
+
+RESTRICTION
+PROJECTION
+
+
+
+
+
+
+HIBERNATE CIRTERIA LANGUAGE
+
+
+
+
+
+
+hib using xml
+
+
+1) create maven project -> quickstart-web 
+	group Id:mphasis
+	artifact Id:HibXml	
+	package: com.java.hib
+
+2) Now add the 3 dependencies to the pom.xml file 
+
+	 <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.30</version>
+</dependency>
+     <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+
+<dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>jstl</artifactId>
+   <version>1.2</version>
+</dependency>
+
+3) HBM (Hibernate mapping)
+
+	* right click on the package com.java.hib.model-> create new file-> Employ.hbm.xml
+	
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.java.hib.model.Employ" table="Employ">
+		<id name="empno" type="int">
+			<column name="EMPNO" />
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<property name="gender">
+            <column name="GENDER" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.java.hib.model.Gender</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="dept" type="java.lang.String">
+        	<column name="DEPT" />
+        </property>
+        <property name="desig" type="java.lang.String">
+        	<column name="DESIG" />
+        </property>
+        <property name="basic" type="double">
+        	<column name="BASIC" />
+        </property>
+	</class>
+</hibernate-mapping>
+
+   ** here we've to give the ***mapping resource****
+
+4) Create a Cr1 class in "com.java.hib" 
+
+5) 
+
+
+	
