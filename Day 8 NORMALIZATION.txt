@@ -1,0 +1,214 @@
+NORMALIZATION Day 8
+
+	Normalization is the scientific method of breaking down the complex table structures into simple table structures by using certain rules. Using this method, you can reduce the redundancy in a table and eliminate the problems of inconsistency and disk space usage.
+
+Rules that should be followed to achieve a good database design are
+
+	i) Each table should have an identifier
+	ii) Each table should store data for a single type of entity.
+	iii) Columns that accept NULLs should be avoided.
+	iv) The Repetition of values or columns should be avoided.
+
+	E.g. table Employ(Empno, Ename, DeptCode, DeptHead, ProjCode, Hours, Salary)
+
+	First Normal Form (1NF): A table said to be in 1NF, each cell contains precisely one value (Atomic Values)
+
+	(E001,'Abhishek',D234,'srinivas',{P100,P123,P552},{12,8,16},9000)
+					|
+					|
+					|
+				       ---
+	(E001,'Abhishek',D234,'srinivas',{P100,P123,P552},{12,8,16},9000)
+	(E001,'Abhishek',D234,'srinivas',{P100,P123,P552},{12,8,16},9000)
+	(E001,'Abhishek',D234,'srinivas',{P100,P123,P552},{12,8,16},9000)
+
+
+	Insert: The department of the particular employee cannot be recorded till the employee is assigned a project.
+
+	Update: The Employee Code, Department No, and department head are created several times, if an employee is transferred to another dept change will have to be recorded 	in every row of the EMPLOYEE table pertaining to that employee.
+
+	Delete: When an employee completes work on the project, the employee's record to be deleted. The information regarding the department and project belongs will also to 	be lost.
+
+	1NF is inadequate ->so for 2NF
+
+	Second Formal Form (2NF): A table said to be in 2NF, at first it must be in 1NF, each attribute functionally depend on whole key but not part of the key.
+		
+	Guidelines:
+
+	-> Find and remove the attributes, that are not functionally depend on whole key
+	
+	-> Group the remaining attributes
+
+	E.g. table Employ(Empno, Ename, DeptCode, DeptHead, ProjCode, Hours, Salary)
+
+	Empno -> Ename (Yes)
+	      -> DeptCode (Yes)	
+              -> DeptHead (Yes)
+	      -> ProjCode (No)
+	      -> Hours (No)
+	      -> Salary (Yes)
+
+	By Applying 2NF,
+
+	Employ(Empno+, Ename, DeptCode, DeptCode, DeptHead, Salary)
+	Project(ProjCode,Empno-,Hours) -> Here the projcode and empno is Many To Many relationship so for that we've to make a composite key -> {ProjCode+Empno}
+
+
+	Insert: The DEPTHEAD of a new dept that does not have any employees at the present cannot be entered in the DEPTHEAD column.
+
+	Update: The DEPTHEAD is repeated several times, hence if a dept head moves to another dept, the change will have to be made consistently across the table.
+
+	Delete: If the record of the employee is deleted, then the information regarding the head of the dept will also to be deleted. Hence there will be a loss of 	information.
+
+	W.R.T. this 2NF is inadequate
+
+	
+	Third Normal Form (3NF): A table said to be in 3NF, at first it must be in 2NF, every attribute needs to be depend on whole key but not transitively.
+
+	Guidelines:
+
+	-> Find and remove attributes that are transitively depend on whole key
+	-> Group the Remaining Attributes
+
+   By Applying 3NF,
+
+	
+
+	Empno -> Ename (Yes)
+	      -> DeptCode (No)	
+              -> DeptHead (No)
+	      -> Salary (Yes)
+
+	Department(DeptCode+, DeptHead)
+	Employ(Empno+,DeptCode-,Ename,Salary) -> Depends on client need, we've to make whether composite key or any one is primary key
+	Project(ProjCode,Empno-,Hours) {ProjCode+Empno}
+
+
+	HIBERNATE IS ONLY FOR DATABASE OPERATION
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Make Application light weight, loosely coupled and tightly integrated and enterprise level application-> Spring
+
+
+Spring is grate framework for development of Enterprise grade applications. Spring is a light-weight framework
+
+Features of SPRING Framework:
+
+Transaction Management: It provides a generic abstraction layer for transaction management. This allowing the developer to add the lpluggable transaction management .
+
+JDBC Exception Handling: The JDBC abstraction layer of the Spring offers a meaningful exception hierarchy, which simplifies the error handling strategy.
+
+Integration With Hibernate, JDO, and iBATIS: Spring provides best integration services with Hibernate, JDO and iBATIS.
+
+MVC Framework: Spring comes with MVC web application framework, 
+
+
+In SPRING, We use Dependency Injection (DI)
+
+<bean id="bean1" class="com.java.spr.NameBean">
+    <property name="name" value="Kabilan">
+</bean>
+
+Spring is having various containers as 
+
+i) BeanFactory
+ii) ApplicationContext
+
+ApplicationContext ctx=new ClassPathXmlApplicationContext("xmlfile");
+
+
+
+1) Create a maven project -> quickstart-web and select the "glassfish.....something" 
+
+	Artifact Id:SpringEx1
+	Package: com.java.spr
+
+2) Go to pom.xml file and add the below dependencies
+
+	 <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.30</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>5.3.30</version>
+    </dependency>
+
+  <!-- Source: https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.33</version>
+    <scope>compile</scope>
+</dependency>
+
+3) right click on package com.java.spr and create one interface "Hello" and create one class in the same package as "HelloImpl"
+
+4) create one xml file(name: hello.xml) inside the package com.java.spr (by right clicking on the project and create "new file")
+
+	<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="bean1" class="com.java.spr.HelloImpl">
+		<property name="greeting" value="Good Morning...!" />
+	</bean>
+</beans>
+
+5) Create one "MainProg" class in the same package
+
+package com.java.spr;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainProg {
+	public static void main(String[] args) {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("com/java/spr/hello.xml");
+		HelloImpl impl=(HelloImpl) ctx.getBean("bean1");
+		System.out.println(impl.sayHello("Rupesh"));
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

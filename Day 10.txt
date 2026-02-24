@@ -1,0 +1,9 @@
+Day 10
+
+Spr Bean using annotation and xml difference ?
+
+Remaining one task student,faculty (using annotation with and without using constructor)
+
+FOR JDBC Template the dependencies (i.e. url,password,username,driver class name) are in this -> org.springframework.jdbc.datasource.DriverManagerDataSource
+
+RowMapper -> convert the database records into list of employees

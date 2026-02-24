@@ -1,0 +1,69 @@
+DATABASE MANAGEMENT DAY 7
+
+
+Before Database:
+
+	1) No Security
+
+	2) Redundancy
+
+	3) Every time creates duplicate copies and master data not related
+
+	4) Will not store all data polymorphisms.
+
+Database Management:
+
+Database: A database is set of interrelated files, stored with minimum redundancy, to serve many users work concurrently.
+
+
+DBMS (Database Management System)
+	
+	A software that which allows you to perform transactions on a data like adding new data, modifying already existing data and removing unwanted data known as DBMS.
+
+Objectives:
+
+	1) Provides an efficient and convenient environment, that which allows you to store and retrieve data
+	2) Granting access on data to the users based on their credentials.
+
+Drawbacks of DBMS:
+
+	1) Data Redundancy
+
+	2) Risk to Data Integrity -> Integrity means correctness of data i.e. Am I able to trust the data ?
+
+	3) Data Isolation -> To parallel concurrent i.e. the newspaper website don't work on midnight due to server down
+
+	4) Difficult Access to Data -> Due to ambiguity of the table i.e. Table with same name
+
+	5) Unsatisfactory Security Measures -> There is no protection 
+
+Data Modeling: (Description of organizing the data fields such as what are the important and mandatory data are there  and calculated data are there)
+		
+		It is the description of organization of data in the database. It also describes the relationship among the data and any constraints that have to be defined on 		data.
+
+	1) Object Based Logical Model: Focuses on describing the data, and the relationship among the data and any constraints defined.
+
+		ER Model (Entity-Relationship model)
+
+		Entity is a thing that which can be easily identified.
+
+		Relation: It is an association among various entities.
+
+		Attribute: It is the property of the Entity. E.g. One Student Entity have lot of attributes like id, name, rollno, etc... 
+			   
+
+		TYPES OF RELATIONSHIPS
+
+		1) One to One : One Record in first entity will have one corresponding record in the second entity known as one to one relationship.
+
+		2) One to Many : One record in the first entity will have many corresponding records in second entity known as one to many.
+
+		3) Many to Many : Many Records in first entity will have many corresponding records in the second entity known as many to many relationship.
+
+		4) Many to One
+	
+	2) Record Based Logical Model 
+
+
+
+	
