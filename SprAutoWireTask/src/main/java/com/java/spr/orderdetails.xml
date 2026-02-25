@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <context:annotation-config /> 
+   <!-- not necessary to refer the vendor details that is the power of autowire -->
+   <bean id="vendorDetails" class="com.java.spr.Vendor">
+   		<property name="vendorId" value="1"/>
+   		<property name="vendorName" value="Swiggy"></property>
+   		<property name="vendorMobile" value="9393939393"/>
+   </bean>
+   
+   <bean id="orderDetails" class="com.java.spr.OrderDetails">
+   		<property name="orderId" value="1"/>
+   		<property name="customer">
+   			<bean class="com.java.spr.Customer">
+   				<property name="custId" value="1"/>
+   				<property name="custName" value="Aravindh"/>
+   				<property name="billAmount" value="150.00"/>
+   			</bean>
+   		</property>
+   		<property name="deliveryAddress">
+   			<bean class="com.java.spr.DeliveryAddress">
+   				<property name="addressId" value="101"/>
+   				<property name="city" value="Chennai"/>
+   				<property name="zipCode" value="600025"/>
+   				<property name="mobileNo" value="9391929595"/>
+   			</bean>
+   		</property>
+   </bean>
+   
+    <bean id="orderDetails1" class="com.java.spr.OrderDetails">
+   		<property name="orderId" value="2"/>
+   		<property name="customer">
+   			<bean class="com.java.spr.Customer">
+   				<property name="custId" value="2"/>
+   				<property name="custName" value="Prashant"/>
+   				<property name="billAmount" value="250.00"/>
+   			</bean>
+   		</property>
+   		<property name="deliveryAddress">
+   			<bean class="com.java.spr.DeliveryAddress">
+   				<property name="addressId" value="102"/>
+   				<property name="city" value="Kanput"/>
+   				<property name="zipCode" value="626564"/>
+   				<property name="mobileNo" value="9344898784"/>
+   			</bean>
+   		</property>
+   </bean>
+   
+</beans>
