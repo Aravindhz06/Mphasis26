@@ -1,0 +1,48 @@
+Day 12
+
+MVC (Model-View-Controller) TDD(Test Driven Development)
+
+Spring MVC is Java-based web framework built on the Model-View-Controller (MVC) design pattern, part of the larger Spring Framework ecosystem. It separates the Model
+(application data), View (presentation layer), and Controller (business logic) to promote cleaner, maintainable, and testable code.
+
+At its core, DispatcherServlet(it is a class) acts as the Front Controller, intercepting all incoming HTTP requests, delegating them to appropriate controllers, and resolving the correct view for rendering.
+
+Key Components
+
+Model: Holds application data, often as POJOs or DTDs.
+
+View: Renders the model data, typically using JSP, JSTL, Thymeleaf, or FreeMarker.
+
+Controller: Handles requests, processes data, and returns a ModelAndView object.
+
+ViewResolver: Maps logical view names to actual view files. (i.e. redirect to corresponding UI )
+
+HandlerMapping: Determines which controller method should handle a request.
+
+
+@RequestMapping(value="/") -> it is the page that is to be redirected (i.e. the default page)
+
+filter->co.ntier -> it will define predefined MVC template
+
+
+PROJECT CREATION
+
+1) File new -> Maven Project -> in filter, just type -> co.ntier -> 
+	ArtifactId: SprMvcEx
+	package:com.java.mvc
+
+2) If red color shows right click on project -> click Build Path -> Configure Build path -> click libraries -> remove the JRE 1.6  and  add library -> click JRE system library 
+-> click execution environment and click the dropdown and select the last one that is JavaSE-1.8 and click finish -> apply and close
+
+3) The HTML code is in web-inf -> views -> home.jsp
+
+4) To run the application -> right click on the project and run on server.
+
+All UI pages must be in Views folder.
+
+MVC -> Loosely coupled and tightly integrated
+
+
+
+
+
