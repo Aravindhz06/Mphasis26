@@ -1,0 +1,37 @@
+Day 15
+
+Spring Boot 
+
+	Spring Boot provides basic and advanced concepts of Spring Framework. Our Spring Boot is designed for beginners and professionals both.
+
+	Spring Boot is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring framework.
+
+	Our Spring Boot includes all topics of Spring Boot such as features, project, maven project, starter project wizard, Spring Initializer, CLI (Command Line Interface),   	applications, annotations, dependency management, properties, starters, Actuator, JPA, JDBC, etc.
+
+What is Spring Boot
+
+	It is a Sprig module that provides the RAD feature to the spring framework. It is used to create a stand-alone spring-based application that you can just run because it 	needs minimal Spring configuration.
+
+	
+	
+
+
+
+SPRING BOOT PROJECT CREATION
+
+1) create a spring starter project
+
+2) project name: SbExample  and change the tool to maven keep the version as it is 17 and type springweb and select it and type dev and select springdevtools and finally give next and finish it.
+
+3) right click on package com.example.demo and create a one class as "HelloController" and open the src/main/resources and open the application.properties and type 
+server.port=8282
+
+http://localhost:8282/hello/test
+
+
+https://www.postman.com/downloads/ -> for postman download
+
+
+ResponseEntity is a class from org.springframework.http..............
+
+http://localhost:9002/swagger-ui/index.html -> Swagger for easy CRUD operations
