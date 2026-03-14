@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello There</title>
+	</head>
+	<body bgcolor="orange">
+		<p>Welcome to ThymeLeaf Programming....</p>
+		<center>
+		<form th:action="@{/greeting}" method="get">
+			Student Name:
+			<input type="text" name="name" th:value="${name}">
+			<br><br>
+			<input type="submit" value="Show">
+		</form>
+		<hr>
+		<a th:href="@{/calcinput}">Calculation Input</a>
+		</center>
+	</body>
+</html>
